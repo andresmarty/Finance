@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Transactions
+{% endblock %}
+
+{% block main %}
+    <table class="tabla">
+        <ul>
+            <li>
+                <tr class="fila">
+                    <th class="elementoTabla">Symbol</th>
+                    <th class="elementoTabla">Shares</th>
+                    <th class="elementoTabla">Price</th>
+                    <th class="elementoTabla">Transacted</th>
+                </tr>
+            </li>
+            {% for row in history %}
+            <li>
+                <tr>
+                    <th class="contenidoTabla">{{ row.symbol }}</th>
+                    <th class="contenidoTabla">{{ row.share }}</th>
+                    <th class="contenidoTabla">{{ row.price }}</th>
+                    <th class="contenidoTabla">"{{ row.time }}"</th>
+                </tr>
+            </li>
+            {% endfor %}
+        </ul>
+    </table>
+{% endblock %}

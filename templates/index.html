@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="tabla">
+        <ul>
+            <li>
+                <tr class="fila">
+                    <th class="elementoTabla">Symbol</th>
+                    <th class="elementoTabla">Name</th>
+                    <th class="elementoTabla">Shares</th>
+                    <th class="elementoTabla">Price</th>
+                    <th class="elementoTabla">Total</th>
+                </tr>
+            </li>
+            {% for row in portfolio %}
+            <li>
+                <tr>
+                    <th class="contenidoTabla">{{ row.symbol }}</th>
+                    <th class="contenidoTabla">{{ row.name }}</th>
+                    <th class="contenidoTabla">{{ row.share }}</th>
+                    <th class="contenidoTabla">$ {{ row.price }}</th>
+                    <th class="contenidoTabla">$ {{ row.sum|round(2, 'floor') }}</th>
+                </tr>
+            </li>
+            {% endfor %}
+            <li>
+                <tr class="fila">
+                    <th class="contenidoTabla"> CASH </th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla">${{ users[0]["cash"]|round(2, 'floor') }}</th>
+                </tr>
+            </li>
+        </ul>
+    </table>
+    <table class="tabla2">
+        <ul>
+            <li>
+                {% if (suma[0]['SUM(sum)']) == None %}
+                <tr class="fila">
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    {% else %}
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla"></th>
+                    <th class="contenidoTabla2">${{ (suma[0]['SUM(sum)'] + users[0]['cash'])|round(2, 'floor') }}</th>
+                    {% endif %}
+                </tr>
+            </li>
+        </ul>
+    </table>
+{% endblock %}
